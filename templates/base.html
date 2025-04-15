@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DizBank{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body {
+            background-color: #000000;
+            min-height: 100vh;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .nav-bar {
+            background: #000000;
+            border-bottom: 1px solid #333333;
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .btn {
+            background: #ffffff;
+            color: #000000;
+            transition: all 0.2s ease;
+            border: 1px solid #ffffff;
+        }
+
+        .btn:hover {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .btn-outline {
+            background: #000000;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+        }
+
+        .btn-outline:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        input {
+            border: 1px solid #333333;
+            transition: all 0.2s ease;
+            background: #111111;
+            color: #ffffff;
+        }
+
+        input:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        .card {
+            background: #111111;
+            border: 1px solid #333333;
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .welcome-text {
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        ::placeholder {
+            color: #666666;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <nav class="nav-bar fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="{{ url_for('index') }}" class="flex items-center">
+                        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="h-12 w-12 invert">
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.is_admin %}
+                            <a href="{{ url_for('admin_panel') }}" class="btn-outline px-6 py-2 rounded text-sm font-medium mr-4">Admin Panel</a>
+                        {% endif %}
+                        <span class="text-gray-300 mr-4">{{ current_user.username }}</span>
+                        <a href="{{ url_for('logout') }}" class="btn px-6 py-2 rounded text-sm font-medium">Çıkış Yap</a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn px-6 py-2 rounded text-sm font-medium">Giriş Yap</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 pt-24">
+        {% if not current_user.is_authenticated %}
+        <div class="text-center mb-12">
+            <h1 class="text-5xl welcome-text mb-4">DizBank'a Hoş Geldiniz</h1>
+            <p class="text-gray-400 text-xl">Güvenli ve modern bankacılık deneyimi için giriş yapın.</p>
+        </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="card text-white px-4 py-3 rounded mb-4" role="alert">
+                        <span class="block sm:inline">{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html> 

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Giriş Yap - DizBank{% endblock %}
+
+{% block content %}
+<div class="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full">
+        <div class="card rounded p-8">
+            <div class="text-center">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="h-16 w-16 mx-auto mb-8 invert">
+                <h2 class="text-3xl font-bold welcome-text mb-2">
+                    DizBank'a Hoş Geldiniz
+                </h2>
+                <p class="text-gray-400 text-lg mb-8">Güvenli bankacılık deneyimi için giriş yapın</p>
+            </div>
+            <form class="space-y-6" method="POST">
+                <div class="space-y-5">
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-300 mb-2">Kullanıcı Adı</label>
+                        <input id="username" name="username" type="text" required
+                            class="w-full px-4 py-2 rounded border-gray-700 focus:border-white focus:ring-1 focus:ring-white"
+                            placeholder="Kullanıcı adınızı girin">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-300 mb-2">Şifre</label>
+                        <input id="password" name="password" type="password" required
+                            class="w-full px-4 py-2 rounded border-gray-700 focus:border-white focus:ring-1 focus:ring-white"
+                            placeholder="Şifrenizi girin">
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit"
+                        class="w-full btn px-6 py-2 rounded text-base font-medium">
+                        Giriş Yap
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 
