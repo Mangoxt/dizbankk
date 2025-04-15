@@ -257,7 +257,6 @@ if __name__ == '__main__':
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=give_weekly_bonus, trigger="interval", days=7)
     scheduler.start()
-=======
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -517,5 +516,4 @@ if __name__ == '__main__':
     scheduler = BackgroundScheduler()
     scheduler.add_job(func=give_weekly_bonus, trigger="interval", days=7)
     scheduler.start()
->>>>>>> c068d352e4ff1e3d6b7bdcee68e403771f9f9ab6
     app.run(debug=True) 
