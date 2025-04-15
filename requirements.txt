@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Flask==3.0.2
 Flask-SQLAlchemy==3.1.1
 Flask-Login==0.6.3
@@ -5,3 +6,11 @@ APScheduler==3.10.4
 Werkzeug==3.0.1
 SQLAlchemy==2.0.28 
 gunicorn
+=======
+Flask==3.0.2
+Flask-SQLAlchemy==3.1.1
+Flask-Login==0.6.3
+APScheduler==3.10.4
+Werkzeug==3.0.1
+SQLAlchemy==2.0.28 
+>>>>>>> c068d352e4ff1e3d6b7bdcee68e403771f9f9ab6
